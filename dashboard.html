@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-orange">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All-in-One Student Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="themes.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+      position: relative;
+      z-index: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    #background-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      display: block;
+    }
+    .fade-in {
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    #flashcard-inner {
+      transform-style: preserve-3d;
+    }
+    #flashcard-front, #flashcard-back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    #flashcard-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+  <canvas id="background-canvas"></canvas>
+  <div class="fixed top-4 right-4 z-50">
+    <label for="theme-switcher" class="sr-only">Select Theme</label>
+  <select
+    id="theme-switcher"
+    class="bg-[var(--card-alt-color)] text-[var(--primary-color)] border-2 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary hover:bg-primary hover:text-white transition-colors duration-300"
+    style="border-color: var(--primary-color);"
+  >
+    <option value="dark-orange">Ignite Focus</option>
+    <option value="red-blaze">Crimson Drive</option>
+    <option value="forest-green">Nature Zen</option>
+    <option value="purple-night">Midnight Calm</option>
+    <option value="pink-blossom">Blush Bloom</option>
+    <option value="light-mode">Clarity Light</option>
+  </select>
+  </div>
+
+  <main class="max-w-7xl w-full relative z-10 px-4">
+    <section class="text-center mb-12 fade-in">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-primary mb-4">
+        All-in-One Student Dashboard
+      </h1>
+      <p class="text-lg sm:text-xl text-secondary max-w-3xl mx-auto">
+        Your tools for productivity, focus, and smarter learning - all in one place.
+      </p>
+    </section>
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 fade-in" style="animation-delay: 0.3s;">
+      <article class="bg-black/50 backdrop-blur-md rounded-xl p-6 hover:shadow-xl transition duration-300 flex flex-col">
+        <h2 class="text-2xl font-semibold text-primary mb-3 flex items-center">
+          <i class="fas fa-check-circle mr-2"></i> To-Do List
+        </h2>
+        <p class="text-secondary mb-4">Manage daily tasks with ease.</p>
+        <div class="mb-2">
+          <input id="todo-input" type="text" placeholder="Add a new task" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary h-10 bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--input-placeholder)]" aria-label="Add new task" />
+        </div>
+        <button id="add-todo-btn" class="btn-primary px-4 py-2 rounded-md w-full" aria-label="Add task">Add</button>
+        <ul id="todo-list" class="list-disc list-inside text-secondary space-y-2 max-h-48 overflow-y-auto" aria-live="polite"></ul>
+      </article>
+
+      <article class="bg-black/50 backdrop-blur-md rounded-xl p-6 hover:shadow-xl transition duration-300 flex flex-col">
+        <h2 class="text-2xl font-semibold text-primary mb-3 flex items-center">
+          <i class="fas fa-hourglass-start mr-2"></i> Pomodoro Timer
+        </h2>
+        <p class="text-secondary mb-4">Customizable focus & break cycles.</p>
+        <div class="flex flex-col items-center space-y-4">
+          <div class="relative w-32 h-32">
+            <svg class="transform -rotate-90" viewBox="0 0 100 100" width="128" height="128" aria-hidden="true" focusable="false">
+              <circle cx="50" cy="50" r="45" stroke="var(--primary-color)" stroke-width="10" fill="none"></circle>
+              <circle id="progress-ring" cx="50" cy="50" r="45" stroke="var(--secondary-color)" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.6" stroke-dashoffset="282.6"></circle>
+            </svg>
+            <div id="timer-display" class="absolute inset-0 flex items-center justify-center text-3xl font-semibold text-primary select-none" aria-live="polite" aria-atomic="true">25:00</div>
+          </div>
+          <div class="flex space-x-4">
+            <button id="start-pause-btn" class="btn-primary px-6 py-2 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-primary" aria-pressed="false" aria-label="Start or pause timer">Start</button>
+            <button id="reset-btn" class="bg-[var(--input-bg)] text-[var(--input-text)] px-6 py-2 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-card" aria-label="Reset timer">Reset</button>
+          </div>
+          <div class="flex space-x-4 mt-4">
+            <label for="focus-length" class="text-secondary text-sm flex items-center space-x-2">
+              <span>Focus (min):</span>
+              <input type="number" id="focus-length" min="1" max="180" class="w-16 rounded-md border border-gray-300 px-2 py-1 text-center text-[var(--input-text)] bg-[var(--input-bg)] focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Set focus length in minutes" />
+            </label>
+            <label for="break-length" class="text-secondary text-sm flex items-center space-x-2">
+              <span>Break (min):</span>
+              <input type="number" id="break-length" min="1" max="60" class="w-16 rounded-md border border-gray-300 px-2 py-1 text-center text-[var(--input-text)] bg-[var(--input-bg)] focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Set break length in minutes" />
+            </label>
+          </div>
+          <div class="text-secondary text-sm select-none" id="session-type" aria-live="polite" aria-atomic="true">Focus Session</div>
+        </div>
+      </article>
+
+      <article class="bg-black/50 backdrop-blur-md rounded-xl p-6 hover:shadow-xl transition duration-300 flex flex-col">
+        <h2 class="text-2xl font-semibold text-primary mb-3 flex items-center">
+          <i class="fas fa-clone mr-2"></i> Flashcards Tool
+        </h2>
+        <p class="text-secondary mb-4">Create and flip custom flashcards.</p>
+        <div class="flex flex-col space-y-4">
+          <div id="flashcard" class="relative w-full h-40 bg-card-alt rounded-lg shadow-md cursor-pointer select-none perspective" tabindex="0" aria-label="Flashcard">
+            <div id="flashcard-inner" class="absolute w-full h-full transition-transform duration-500">
+              <div id="flashcard-front" class="absolute w-full h-full flex items-center justify-center text-xl font-semibold text-primary p-4 bg-card-alt rounded-lg">Front Side</div>
+              <div id="flashcard-back" class="absolute w-full h-full flex items-center justify-center text-xl font-semibold text-primary p-4 bg-card-alt rounded-lg">Back Side</div>
+            </div>
+          </div>
+
+          <form id="flashcard-form" class="flex flex-col space-y-2" aria-label="Add new flashcard">
+            <input type="text" id="flashcard-front-input" placeholder="Front text" class="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--input-placeholder)]" required />
+            <input type="text" id="flashcard-back-input" placeholder="Back text" class="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--input-placeholder)]" required />
+            <button type="submit" class="btn-primary px-4 py-2 rounded-md">Add Flashcard</button>
+          </form>
+
+          <ul id="flashcard-list" class="space-y-2 max-h-48 overflow-y-auto text-secondary bg-card p-2 rounded-md" aria-live="polite"></ul>
+        </div>
+      </article>
+
+      <article class="bg-black/50 backdrop-blur-md rounded-xl p-6 hover:shadow-xl transition duration-300 flex flex-col items-center">
+        <h2 class="text-2xl font-semibold text-primary mb-3 flex items-center justify-center w-full">
+          <i class="fas fa-robot mr-2"></i> Generate Summary with AI
+        </h2>
+        <textarea id="bbai-input" rows="5" placeholder="Enter YouTube link, text, or summary request here..." class="w-full max-w-xl rounded-md border p-3 bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--input-placeholder)] focus:outline-none focus:ring-2 focus:ring-primary resize-none transition duration-300" aria-label="Input for Blackbox AI"></textarea>
+        <button id="bbai-send-btn" class="btn-primary mt-4 w-full max-w-xl px-4 py-2 rounded-md" aria-label="Send to AI">Send to AI</button>
+        <div id="bbai-message" class="mt-3 text-secondary text-center opacity-0 transition-opacity duration-500" aria-live="polite"></div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('preferredTheme');
+    if (savedTheme) {
+      htmlEl.setAttribute('data-theme', savedTheme);
+      themeSwitcher.value = savedTheme;
+    }
+    themeSwitcher.addEventListener('change', () => {
+      const selected = themeSwitcher.value;
+      htmlEl.setAttribute('data-theme', selected);
+      localStorage.setItem('preferredTheme', selected);
+    });
+  </script>
+  <script src="scripts.js"></script>
+  <script>
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    const particleCount = 80;
+    const maxDistance = 150;
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = 2 + Math.random() * 2;
+        this.setColor();
+      }
+      setColor() {
+        const color = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
+        this.color = color || 'rgba(255, 102, 0, 0.8)';
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 8;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function connectParticles() {
+      const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
+      for (let i = 0; i < particleCount; i++) {
+        for (let j = i + 1; j < particleCount; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDistance) {
+            ctx.beginPath();
+            ctx.strokeStyle = themeColor;
+            ctx.globalAlpha = 1 - dist / maxDistance;
+            ctx.lineWidth = 1;
+            ctx.shadowColor = themeColor;
+            ctx.shadowBlur = 4;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    function init() {
+      resize();
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+      animate();
+    }
+
+    window.addEventListener('resize', () => {
+      resize();
+      particles.forEach(p => p.setColor());
+    });
+    themeSwitcher.addEventListener('change', () => {
+      particles.forEach(p => p.setColor());
+    });
+
+    init();
+  </script>
+</body>
+</html>

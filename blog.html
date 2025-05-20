@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0c0c;
+      color: #f0f0f0;
+    }
+    header, footer {
+      background-color: #0f0f0f;
+    }
+    .post-card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="w-full py-6 px-6 flex justify-between items-center shadow-md">
+    <a href="index.html">
+      <img src="images/logo.jpg" alt="Logo" class="h-8 object-contain" />
+    </a>
+    <nav>
+      <a href="index.html" class="text-sm text-gray-300 hover:text-white">Home</a>
+    </nav>
+  </header>  <main class="flex-1 py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl font-bold mb-10 text-center">Latest Blog Posts</h1>
+      <div class="grid md:grid-cols-2 gap-10"><div class="post-card">
+      <h2 class="text-2xl font-semibold text-orange-500 mb-2">5 Study Habits That Actually Work</h2>
+      <p class="text-gray-400 text-sm mb-4">Posted on March 15, 2025</p>
+      <p class="text-gray-300">Discover scientifically-backed techniques that improve retention, focus, and long-term academic performance.</p>
+      <a href="#" class="text-orange-400 mt-4 inline-block hover:underline">Read More →</a>
+    </div>
+
+    <div class="post-card">
+      <h2 class="text-2xl font-semibold text-green-400 mb-2">Using the Pomodoro Technique for Maximum Focus</h2>
+      <p class="text-gray-400 text-sm mb-4">Posted on April 2, 2025</p>
+      <p class="text-gray-300">A deep dive into how the Pomodoro Timer can help you manage time and energy while studying or working.</p>
+      <a href="#" class="text-green-300 mt-4 inline-block hover:underline">Read More →</a>
+    </div>
+
+    <div class="post-card">
+      <h2 class="text-2xl font-semibold text-purple-400 mb-2">Designing a Distraction-Free Study Environment</h2>
+      <p class="text-gray-400 text-sm mb-4">Posted on May 10, 2025</p>
+      <p class="text-gray-300">Your workspace matters. Learn how to structure your physical and digital environments to boost deep focus.</p>
+      <a href="#" class="text-purple-300 mt-4 inline-block hover:underline">Read More →</a>
+    </div>
+
+    <div class="post-card">
+      <h2 class="text-2xl font-semibold text-yellow-300 mb-2">Top AI Tools for Students in 2025</h2>
+      <p class="text-gray-400 text-sm mb-4">Posted on May 18, 2025</p>
+      <p class="text-gray-300">From writing assistants to task managers, these AI tools can transform how students learn and stay productive.</p>
+      <a href="#" class="text-yellow-200 mt-4 inline-block hover:underline">Read More →</a>
+    </div>
+
+  </div>
+</div>
+
+  </main>  <footer class="w-full py-8 px-6 text-center text-sm text-gray-500 bg-[#0f0f0f] border-t border-[#222]">
+    <p>© 2025 Student Dashboard Blog. Empowering better learning through design and tech.</p>
+  </footer>
+</body>
+</html>
