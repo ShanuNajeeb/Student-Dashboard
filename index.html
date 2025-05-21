@@ -9,17 +9,11 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0c0c0c;
-      color: #f0f0f0;
-    }
-    header, footer {
-      background-color: #0f0f0f;
-    }
+    body { font-family: 'Inter', sans-serif; background-color: #0c0c0c; color: #f0f0f0; }
+    header, footer { background-color: #0f0f0f; }
     .hero-section {
       background: radial-gradient(circle at center, #1a1a1a 0%, #0c0c0c 100%);
-      padding: 6rem 1.5rem;
+      padding: 5rem 1rem;
       text-align: center;
       position: relative;
       min-height: 100vh;
@@ -34,138 +28,110 @@
       background: rgba(0, 0, 0, 0.3);
       z-index: 0;
     }
-    .hero-section > * {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-section > * { position: relative; z-index: 1; }
     .theme-preview-img {
       border: 2px solid #2c2c2c;
       border-radius: 12px;
       overflow: hidden;
       width: 100%;
-      height: auto;
       aspect-ratio: 16 / 9;
       object-fit: cover;
       background-color: #1a1a1a;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .theme-preview-img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
+    .theme-preview-img:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">  <header class="w-full py-6 px-6 shadow-md flex items-center justify-between">
+<body class="min-h-screen flex flex-col">
+  <header class="w-full py-4 px-4 sm:py-6 sm:px-6 shadow-md flex flex-col sm:flex-row items-start sm:items-center sm:justify-between">
     <a href="index.html">
-      <img src="images/logo.jpg" alt="Student Dashboard Logo" class="h-4 sm:h-6 md:h-8 w-auto object-contain" />
+      <img src="images/logo.jpg" alt="Student Dashboard Logo" class="h-8 sm:h-10 w-auto object-contain" />
     </a>
-    <nav>
-      <a href="#features" class="mr-4 text-sm text-gray-300 hover:text-white transition">Features</a>
-      <a href="#themes" class="mr-4 text-sm text-gray-300 hover:text-white transition">Themes</a>
-      <a href="dashboard.html" class="text-sm px-5 py-2 rounded bg-orange-600 hover:bg-orange-700 transition">Open Dashboard</a>
+    <nav class="mt-4 sm:mt-0">
+      <a href="#features" class="block sm:inline-block mr-0 sm:mr-4 text-sm text-gray-300 hover:text-white transition mb-2 sm:mb-0">Features</a>
+      <a href="#themes" class="block sm:inline-block mr-0 sm:mr-4 text-sm text-gray-300 hover:text-white transition mb-2 sm:mb-0">Themes</a>
+      <a href="dashboard.html" class="inline-block text-sm px-4 py-2 rounded bg-orange-600 hover:bg-orange-700 transition">Open Dashboard</a>
     </nav>
-  </header>  <main class="flex-1">
+  </header>
+  <main class="flex-1">
     <section class="hero-section" id="hero">
-      <h1 class="text-5xl sm:text-6xl font-extrabold text-orange-500 mb-4" data-aos="fade-up">
-        Student Dashboard
-      </h1>
-      <h2 class="text-5xl sm:text-6xl font-extrabold mb-6" data-aos="fade-up">
-        Break Free From Distractions
-      </h2>
-      <p class="text-xl text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Maximize your study sessions with a fully integrated productivity suite. One page. All tools. All styles.</p>
-      <div class="mt-10" data-aos="fade-up" data-aos-delay="200">
-        <a href="dashboard.html" class="inline-block px-8 py-4 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 transition text-lg">Launch Dashboard</a>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-orange-500 mb-4" data-aos="fade-up">Student Dashboard</h1>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6" data-aos="fade-up">Break Free From Distractions</h2>
+      <p class="text-lg sm:text-xl text-gray-300 max-w-xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">Maximize your study sessions with a fully integrated productivity suite. One page. All tools. All styles.</p>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <a href="dashboard.html" class="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 transition text-base sm:text-lg">Launch Dashboard</a>
       </div>
-    </section><section id="features" class="py-24 px-6 bg-[#121212]">
-  <div class="max-w-6xl mx-auto">
-    <h3 class="text-3xl font-bold text-center mb-6" data-aos="fade-up">Features</h3>
-    <p class="text-center text-gray-400 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">Tools designed to keep you focused and productive. Simple, effective, beautiful.</p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-      <div class="hover:scale-105 hover:shadow-lg transition-transform duration-300" data-aos="zoom-in">
-        <i class="fas fa-check-circle text-orange-500 text-4xl mb-4"></i>
-        <h4 class="text-xl font-semibold mb-2">To-Do List</h4>
-        <p class="text-gray-400">Organize your daily tasks and boost your productivity.</p>
+    </section><!-- Features Section -->
+<section id="features" class="py-16 px-4 sm:py-24 sm:px-6 bg-[#121212]">
+  <div class="max-w-5xl mx-auto">
+    <h3 class="text-2xl sm:text-3xl font-bold text-center mb-4" data-aos="fade-up">Features</h3>
+    <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Tools designed to keep you focused and productive. Simple, effective, beautiful.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+      <div class="hover:scale-105 hover:shadow-lg transition duration-300" data-aos="zoom-in">
+        <i class="fas fa-check-circle text-orange-500 text-3xl sm:text-4xl mb-3"></i>
+        <h4 class="text-lg sm:text-xl font-semibold mb-1">To-Do List</h4>
+        <p class="text-gray-400 text-sm sm:text-base">Organize your daily tasks and boost your productivity.</p>
       </div>
-      <div class="hover:scale-105 hover:shadow-lg transition-transform duration-300" data-aos="zoom-in" data-aos-delay="100">
-        <i class="fas fa-hourglass-half text-purple-400 text-4xl mb-4"></i>
-        <h4 class="text-xl font-semibold mb-2">Pomodoro Timer</h4>
-        <p class="text-gray-400">Stay focused with timed work and break sessions.</p>
+      <div class="hover:scale-105 hover:shadow-lg transition duration-300" data-aos="zoom-in" data-aos-delay="100">
+        <i class="fas fa-hourglass-half text-purple-400 text-3xl sm:text-4xl mb-3"></i>
+        <h4 class="text-lg sm:text-xl font-semibold mb-1">Pomodoro Timer</h4>
+        <p class="text-gray-400 text-sm sm:text-base">Stay focused with timed work and break sessions.</p>
       </div>
-      <div class="hover:scale-105 hover:shadow-lg transition-transform duration-300" data-aos="zoom-in" data-aos-delay="200">
-        <i class="fas fa-clone text-pink-400 text-4xl mb-4"></i>
-        <h4 class="text-xl font-semibold mb-2">Flashcards</h4>
-        <p class="text-gray-400">Create and review flashcards for efficient studying.</p>
+      <div class="hover:scale-105 hover:shadow-lg transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+        <i class="fas fa-clone text-pink-400 text-3xl sm:text-4xl mb-3"></i>
+        <h4 class="text-lg sm:text-xl font-semibold mb-1">Flashcards</h4>
+        <p class="text-gray-400 text-sm sm:text-base">Create and review flashcards for efficient studying.</p>
       </div>
-      <div class="hover:scale-105 hover:shadow-lg transition-transform duration-300" data-aos="zoom-in" data-aos-delay="300">
-        <i class="fas fa-robot text-green-400 text-4xl mb-4"></i>
-        <h4 class="text-xl font-semibold mb-2">AI Summary</h4>
-        <p class="text-gray-400">Summarize videos or text content instantly using AI.</p>
+      <div class="hover:scale-105 hover:shadow-lg transition duration-300" data-aos="zoom-in" data-aos-delay="300">
+        <i class="fas fa-robot text-green-400 text-3xl sm:text-4xl mb-3"></i>
+        <h4 class="text-lg sm:text-xl font-semibold mb-1">AI Summary</h4>
+        <p class="text-gray-400 text-sm sm:text-base">Summarize videos or text content instantly using AI.</p>
       </div>
     </div>
   </div>
 </section>
 
-    <section id="themes" class="py-24 px-6 bg-[#181818]">
-      <div class="max-w-6xl mx-auto">
-        <h3 class="text-3xl font-bold text-center mb-6" data-aos="fade-up">Themes</h3>
-        <p class="text-center text-gray-400 mb-20 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">Each theme is designed for a different study mood - pick the vibe that keeps you focused.</p>
-
-        <div class="flex flex-col space-y-24">
-          <div class="flex flex-col md:flex-row md:items-center md:gap-12" data-aos="fade-up">
-            <img src="images/dark-orange.jpg" alt="Ignite Focus Theme" class="theme-preview-img md:w-1/2">
-            <div class="mt-6 md:mt-0 md:w-1/2">
-              <h4 class="text-2xl font-bold text-orange-500 mb-3">Ignite Focus</h4>
-              <p class="text-gray-400">A bold orange-accented theme that energizes your workflow with contrast and intensity.</p>
-            </div>
-          </div>
-
-          <div class="flex flex-col md:flex-row-reverse md:items-center md:gap-12" data-aos="fade-up" data-aos-delay="100">
-            <img src="images/purple-night.jpg" alt="Midnight Calm Theme" class="theme-preview-img md:w-1/2">
-            <div class="mt-6 md:mt-0 md:w-1/2">
-              <h4 class="text-2xl font-bold text-purple-400 mb-3">Midnight Calm</h4>
-              <p class="text-gray-400">Perfect for night owls - a deep purple and charcoal blend that relaxes the eyes.</p>
-            </div>
-          </div>
-
-          <div class="flex flex-col md:flex-row md:items-center md:gap-12" data-aos="fade-up" data-aos-delay="200">
-            <img src="images/pink-blossom.jpg" alt="Blush Bloom Theme" class="theme-preview-img md:w-1/2">
-            <div class="mt-6 md:mt-0 md:w-1/2">
-              <h4 class="text-2xl font-bold text-pink-400 mb-3">Blush Bloom</h4>
-              <p class="text-gray-400">A soft and playful palette combining elegance with cheerful vibrancy - study with a smile.</p>
-            </div>
-          </div>
-
-          <div class="flex flex-col md:flex-row-reverse md:items-center md:gap-12" data-aos="fade-up" data-aos-delay="300">
-            <img src="images/forest-green.jpg" alt="Nature Zen Theme" class="theme-preview-img md:w-1/2">
-            <div class="mt-6 md:mt-0 md:w-1/2">
-              <h4 class="text-2xl font-bold text-green-400 mb-3">Nature Zen</h4>
-              <p class="text-gray-400">Refresh your mind with a forest-inspired green palette, soothing and grounded for long hours.</p>
-            </div>
-          </div>
-
-          <div class="flex flex-col md:flex-row md:items-center md:gap-12" data-aos="fade-up" data-aos-delay="400">
-            <img src="images/red-blaze.jpg" alt="Crimson Drive Theme" class="theme-preview-img md:w-1/2">
-            <div class="mt-6 md:mt-0 md:w-1/2">
-              <h4 class="text-2xl font-bold text-red-400 mb-3">Crimson Drive</h4>
-              <p class="text-gray-400">For high-impact sessions, this red-dominant theme keeps the pressure on and the focus sharp.</p>
-            </div>
-          </div>
-
-          <div class="flex flex-col md:flex-row-reverse md:items-center md:gap-12" data-aos="fade-up" data-aos-delay="500">
-            <img src="images/light-mode.jpg" alt="Clarity Light Theme" class="theme-preview-img md:w-1/2">
-            <div class="mt-6 md:mt-0 md:w-1/2">
-              <h4 class="text-2xl font-bold text-yellow-300 mb-3">Clarity Light</h4>
-              <p class="text-gray-400">A minimalist light mode for clarity and simplicity, ideal for daytime productivity.</p>
-            </div>
-          </div>
+<!-- Themes Section -->
+<section id="themes" class="py-16 px-4 sm:py-24 sm:px-6 bg-[#181818]">
+  <div class="max-w-5xl mx-auto">
+    <h3 class="text-2xl sm:text-3xl font-bold text-center mb-4" data-aos="fade-up">Themes</h3>
+    <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Each theme is designed for a different study mood – pick the vibe that keeps you focused.</p>
+    <div class="grid gap-12">
+      <div class="flex flex-col md:flex-row items-center gap-6" data-aos="fade-up">
+        <img src="images/dark-orange.jpg" alt="Ignite Focus" class="theme-preview-img md:w-1/2">
+        <div class="md:w-1/2">
+          <h4 class="text-xl font-bold text-orange-500 mb-2">Ignite Focus</h4>
+          <p class="text-gray-400">A bold orange-accented theme that energizes your workflow with contrast and intensity.</p>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="flex flex-col md:flex-row-reverse items-center gap-6" data-aos="fade-up" data-aos-delay="100">
+        <img src="images/purple-night.jpg" alt="Midnight Calm" class="theme-preview-img md:w-1/2">
+        <div class="md:w-1/2">
+          <h4 class="text-xl font-bold text-purple-400 mb-2">Midnight Calm</h4>
+          <p class="text-gray-400">Perfect for night owls – a deep purple and charcoal blend that relaxes the eyes.</p>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center gap-6" data-aos="fade-up" data-aos-delay="200">
+        <img src="images/pink-blossom.jpg" alt="Blush Bloom" class="theme-preview-img md:w-1/2">
+        <div class="md:w-1/2">
+          <h4 class="text-xl font-bold text-pink-400 mb-2">Blush Bloom</h4>
+          <p class="text-gray-400">A soft and playful palette combining elegance with cheerful vibrancy – study with a smile.</p>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row-reverse items-center gap-6" data-aos="fade-up" data-aos-delay="300">
+        <img src="images/forest-green.jpg" alt="Nature Zen" class="theme-preview-img md:w-1/2">
+        <div class="md:w-1/2">
+          <h4 class="text-xl font-bold text-green-400 mb-2">Nature Zen</h4>
+          <p class="text-gray-400">Refresh your mind with a forest-inspired green palette, soothing and grounded for long hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer class="w-full py-10 px-6 text-center text-sm text-gray-400 bg-[#0f0f0f] border-t border-[#222]">
-    <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-4">
+  </main>
+  <footer class="w-full py-8 px-4 text-center text-sm text-gray-400 bg-[#0f0f0f] border-t border-[#222]">
+    <div class="flex flex-wrap justify-center gap-4 mb-4">
       <a href="about.html" class="hover:text-orange-400 transition">About</a>
       <a href="privacy.html" class="hover:text-orange-400 transition">Privacy</a>
       <a href="terms.html" class="hover:text-orange-400 transition">Terms</a>
@@ -173,8 +139,6 @@
     </div>
     <p class="text-xs text-gray-500">&copy; 2025 Student Dashboard. Designed to help you break free.</p>
   </footer>
-
-
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ once: true, duration: 700, easing: 'ease-out-cubic' });
